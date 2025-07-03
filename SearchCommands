@@ -1,0 +1,43 @@
+1. Basic Search in Current Directory and Subdirectories
+   grep -r "search_term"
+
+2. Search in a Specific Directory
+   grep -r "search_term" /path/to/directory
+
+3. Display Only Filenames Containing the Search Term
+   grep -rl "search_term"
+   The -l option tells grep to display only the names of files containing the search term.
+
+4. Case-Insensitive Search
+   grep -ri "search_term"
+   The -i option makes the search case-insensitive, so it will match "search_term", "Search_Term", "SEARCH_TERM", etc.
+
+5. Search Within Specific File Types
+   grep -r --include="*.txt" "search_term"
+   This command searches for "search_term" only in files with the .txt extension.
+
+6. Exclude Specific Files or Directories
+   grep -r --exclude="*.bak" "search_term"
+   This command excludes files with the .bak extension from the search. To exclude entire directories, use:
+
+7. Search for Whole Words Only
+   grep -rw "search_term" .
+   The -w option ensures that grep matches only whole words, so it won't match partial words.
+
+8. Show Line Numbers with Matches
+    grep -rn "search_term" .
+    The -n option shows the line numbers where the search term appears.
+
+9. Use ripgrep for Faster Searches
+   rg "search_term" 
+   If you have ripgrep (often installed as rg) available, it's a faster alternative to grep for recursive searches:
+
+
+
+
+
+
+
+Sources
+
+Ask ChatGPT
