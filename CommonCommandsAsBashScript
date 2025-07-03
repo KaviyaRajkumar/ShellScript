@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# --- CONFIG ---
+FILE="filename.txt"
+PROCESS_NAME="process_to_kill"
+PID_TO_KILL=12345
+ZIP_URL="http://example.com/file.zip"
+ZIP_DEST="/tmp/file.zip"
+EXTRACT_DIR="/tmp/extracted_folder"
+
+echo "1. Counting words and empty lines in $FILE"
+word_count=$(wc -w < "$FILE")
+empty_lines=$(grep -c '^$' "$FILE")
+echo "Words: $word_count"
+echo "Empty lines: $empty_lines"
+
+echo
+echo "2. Killing process by name: $PROCESS_NAME"
+pkill "$PROCESS_NAME" && echo "Process $PROCESS_NAME killed." || echo "Process $PROCESS_NAME not found."
+
+echo
+echo "3. Killing process by PID: $PID_TO_KILL"
+kill "$PID_TO_KILL" && echo "Process $PID_TO_KILL killed." || echo "Process $PID_TO_KILL not found or already stopped."
+
+echo
+echo "4. Changing permissions of $FILE to 644"
+chmod 644 "$FILE" && echo "Permissions changed." || echo "Failed to change permissions."
+
+echo
+echo "5. Extracting 2nd word from each line of $FILE"
+awk '{print $2}' "$FILE"
+
+echo
+echo "6. Downloading zip from $ZIP_URL"
+wget "$ZIP_URL" -O "$ZIP_DEST" && echo "Downloaded zip file." || { echo "Failed to download zip file."; exit 1; }
+
+echo
+echo "7. Extracting zip file to $EXTRACT_DIR"
+unzip -o "$ZIP_DEST" -d "$EXTRACT_DIR" && echo "Extraction done." || { echo "Failed to extract zip file."; exit 1; }
+
+echo
+echo "8. Counting .html files in $EXTRACT_DIR"
+html_count=$(find "$EXTRACT_DIR" -type f -name "*.html" | wc -l)
+echo ".html files count: $html_count"
+
+echo
+echo "9. Counting .css files in $EXTRACT_DIR"
+css_count=$(find "$EXTRACT_DIR" -type f -name "*.css" | wc -l)
+echo ".css files count: $css_count"
+
+echo
+echo "Script completed!"
