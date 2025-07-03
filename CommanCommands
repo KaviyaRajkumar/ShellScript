@@ -1,0 +1,39 @@
+1. Count words                   
+   wc -w filename.txt
+
+2. Count empty lines in a file
+   grep -c '^$' filename.txt
+
+3. Kill processes by name(e.g. "chrome")
+   pkill chrome
+
+4. Kill processes by PID(e.g. 12345)
+   kill 12345
+
+5. Force kill process by PID(e.g. 12345)
+   kill -9 12345
+
+6. Change file permissions
+   a. Give read, write, execute to owner; read and execute to group and others
+   chmod 755 filename.sh
+   b. Give read and write to owner only
+   chmod 600 filename.txt
+
+7. Extract specific words from each line (example: extract 2nd word from each line)
+   awk '{print $2}' filename.txt
+
+8. Extract all words starting with a vowel from each line
+   awk '{for(i=1;i<=NF;i++) if ($i ~ /^[aeiouAEIOU]/) print $i}' filename.txt
+
+9. Download/extract a zip file on a remote machine and count .html and .css files
+   a. Download a zip file (replace URL with actual link)
+      wget http://example.com/file.zip -O /tmp/file.zip
+
+   b. Extract zip file to /tmp/extracted_folder
+      unzip /tmp/file.zip -d /tmp/extracted_folder
+
+   c. Count .html files in extracted folder
+      find /tmp/extracted_folder -type f -name "*.html" | wc -l
+
+   d. Count .css files in extracted folder
+      find /tmp/extracted_folder -type f -name "*.css" | wc -l
